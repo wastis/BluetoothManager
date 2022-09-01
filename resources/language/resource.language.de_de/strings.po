@@ -1,0 +1,50 @@
+
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de_de\n"
+
+msgctxt "#32000"
+msgid "connected"
+msgstr "verbunden"
+
+msgctxt "#32001"
+msgid "disconnected"
+msgstr "getrennt"
+
+msgctxt "#32002"
+msgid "not paired"
+msgstr "nicht gekoppelt"
+
+msgctxt "#32003"
+msgid "discovering"
+msgstr "suche"
+
+msgctxt "#32004"
+msgid "adapter is off"
+msgstr "Adapter ist aus"
+
+msgctxt "#32005"
+msgid "General"
+msgstr "Allgemein"
+
+msgctxt "#32006"
+msgid "show unkown devices"
+msgstr "zeige unbekannte Geräte"
+
+msgctxt "#32007"
+msgid "unknown"
+msgstr "unbekannt"
+
+msgctxt "#32008"
+msgid "no adapter available"
+msgstr "kein Adapter verfügbar"
+
+msgctxt "#32009"
+msgid "remove device"
+msgstr "Gerät entfernen"
+
+msgctxt "#32010"
+msgid "remove device"
+msgstr "Gerät entfernen"

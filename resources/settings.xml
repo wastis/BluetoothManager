@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="32005">
+        <setting label="32006" type="bool" id="showunknown" default="false"/>
+        <setting label="32009" type="action" action="RunScript(script.bluetooth.man, remove)"/>
+    </category>
+</settings>
