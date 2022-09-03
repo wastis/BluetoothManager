@@ -12,10 +12,10 @@
 from handle import opthandle
 
 class BlueZObject :
-	def __init__(self, attr_dict = None):
+	def __init__(self, attr_dict = None, oid = None):
 		for attr in self.attributes: setattr(self, attr, None)
 		if attr_dict:
-			self.set_attributes(attr_dict)
+			self.set_attributes(attr_dict, oid)
 
 	def __str__(self):
 		r = "{"
@@ -35,25 +35,28 @@ class BlueZObject :
 			except Exception as e: opthandle(e)
 			yield (attr, val)
 
-	def set_attributes(self,attr_dict):
-		sig = False
+	def set_attributes(self,attr_dict, oid = None):
+		sig = []
+		if oid is not None:
+			self.id = oid
+
 		for key, val in attr_dict.items():
 			if key in self.attributes:
 				setattr(self, key, val[1])
 			if key in self.change_signal:
-				sig = True
+				sig.append(key)
 		return sig
 
 class BlueZAdapter(BlueZObject):
 	attributes = ["Address","AddressType","Alias","Class","Discoverable",
 				"DiscoverableTimeout","Discovering","Modalias","Name",
-				"Pairable","PairableTimeout","Powered"]
+				"Pairable","PairableTimeout","Powered","id"]
 
-	change_signal = ["Discoverable","Discovering","Pairable","Powered"]
+	change_signal = ["Discovering","Powered"]
 
 class BlueZDevice(BlueZObject):
 	attributes = ["Address","AddressType","Name","Alias","Class",
 				"Icon","Paired","Trusted","Blocked","LegacyPairing",
-				"Connected","Adapter","ServicesResolved"]
+				"Connected","Adapter","ServicesResolved", "id"]
 
 	change_signal = ["Paired","Trusted","Connected"]

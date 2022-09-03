@@ -27,14 +27,19 @@
 			<texturefocus />
 			<texturenofocus />
 			<onclick>Action(back)</onclick>
+			<onup>2010</onup>
+			<ondown>2010</ondown>
+			<onleft>2010</onleft>
+			<onright>2010</onright>
 		</control>
 		
 		<control type="image">
-			<left>0</left>
-			<top>0</top>
-			<width>1200</width>
-			<height>800</height>
+			<left>-15</left>
+			<top>-15</top>
+			<width>1230</width>
+			<height>830</height>
 			<texture colordiffuse="FF1A2123">colors/white.png</texture>
+			
 		</control>
 		
 		<control type="image">
@@ -45,16 +50,13 @@
 			<texture colordiffuse="00000000">colors/black.png</texture>
 		</control>
 
-
 		<control type="image">
 			<left>640</left>
 			<top>20</top>
 			<width>510</width>
-			<height>60</height>
+			<height>65</height>
 			<texture colordiffuse="00000000">colors/black.png</texture>
 		</control>
-		
-		
 		
 		<control type="radiobutton" id="2010">
 			<type>radiobutton</type>
@@ -78,8 +80,8 @@
 			<label>None</label>
 			<textoffsetx>30</textoffsetx>
 			<textwidth>300</textwidth>
+			<font>font14</font>
 		</control>
-		
 
 		<control type="label" id="2021">
 			<left>640</left>
@@ -89,6 +91,8 @@
 			<aligny>center</aligny>
 			<align>right</align>
 			<label>Discovering</label>
+			<font>font14</font>
+			
 		</control>		
 		<control type="image" id="1000">
 			<left>1090</left>
@@ -127,23 +131,25 @@
 					<left>100</left>
 					<top>3</top>
 					<width>950</width>
-					<height>64</height>
+					<height>80</height>
 					<font>font14</font>
 					<aligny>center</aligny>
-					<selectedcolor>green</selectedcolor>
 					<align>left</align>
 					<label>$INFO[ListItem.Label]</label>
+					
+					
 				</control>
 				<control type="label">
 					<left>100</left>
 					<top>3</top>
 					<width>950</width>
-					<height>64</height>
+					<height>80</height>
 					<font>font14</font>
 					<aligny>center</aligny>
-					<selectedcolor>green</selectedcolor>
 					<align>right</align>
 					<label>$INFO[ListItem.Label2]</label>
+					
+					
 				</control>
 
 			</itemlayout>
@@ -167,26 +173,58 @@
 					<left>100</left>
 					<top>3</top>
 					<width>950</width>
-					<height>64</height>
+					<height>80</height>
 					<font>font14</font>
 					<aligny>center</aligny>
-					<selectedcolor>green</selectedcolor>
 					<align>left</align>
+					<visible>Control.HasFocus(2000)</visible>
 					<label>$INFO[ListItem.Label]</label>
+					<textcolor>FF000000</textcolor>
+					
 				</control>
 				<control type="label">
 					<left>100</left>
 					<top>3</top>
 					<width>950</width>
-					<height>64</height>
+					<height>80</height>
 					<font>font14</font>
 					<aligny>center</aligny>
-					<selectedcolor>green</selectedcolor>
 					<align>right</align>
+					<visible>Control.HasFocus(2000)</visible>
 					<label>$INFO[ListItem.Label2]</label>
+					<textcolor>FF000000</textcolor>
+					
+					<shadowcolor></shadowcolor>
 				</control>
-			</focusedlayout>
+				
+				<control type="label">
+					<left>100</left>
+					<top>3</top>
+					<width>950</width>
+					<height>80</height>
+					<font>font14</font>
+					<aligny>center</aligny>
+					<align>left</align>
+					<visible>!Control.HasFocus(2000)</visible>
+					<label>$INFO[ListItem.Label]</label>
+					
+					
+				</control>
+				<control type="label">
+					<left>100</left>
+					<top>3</top>
+					<width>950</width>
+					<height>80</height>
+					<font>font14</font>
+					<aligny>center</aligny>
+					<align>right</align>
+					<visible>!Control.HasFocus(2000)</visible>
+					<label>$INFO[ListItem.Label2]</label>
+					
+					
+				</control>
 
+			</focusedlayout>
 
 		</control>
 		<control type="image" id="1001">
@@ -197,7 +235,6 @@
 			<texture>rotation/rot0.png</texture>
 			<aspectratio>keep</aspectratio>
 		</control>
-
 
 	</controls>
 </window>

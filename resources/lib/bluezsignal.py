@@ -36,14 +36,17 @@ class BlueZSignal:
 					objlist = [arg for arg in message.objects]
 
 					if objlist[0] == "org.bluez.Device1":
-						obj = self.objects.devices[message.path]
+						obj = self.objects.devices[str(message.path)]
+						msg = "on_device_change"
 					elif objlist[0] == "org.bluez.Adapter1":
-						obj = self.objects.adapters[message.path]
+						obj = self.objects.adapters[str(message.path)]
+						msg = "on_adapter_change"
 					else:
 						return DBUS.HANDLER_RESULT_NOT_YET_HANDLED
 
-					if obj.set_attributes(objlist[1]):
-						self.on_change()
+					sig = obj.set_attributes(objlist[1])
+					if sig:
+						self.on_change(msg, [str(message.path), sig])
 
 					return DBUS.HANDLER_RESULT_HANDLED
 
@@ -51,12 +54,12 @@ class BlueZSignal:
 					objlist = [arg for arg in message.objects]
 
 					if "org.bluez.Device1" in objlist[1]:
-						self.objects.devices.pop(objlist[0])
-						self.on_change()
+						self.objects.devices.pop(str(objlist[0]))
+						self.on_change("on_device_remove", [str(objlist[0])])
 
 					if "org.bluez.Adapter1" in objlist[1]:
-						self.objects.adapters.pop(objlist[0])
-						self.on_change()
+						self.objects.adapters.pop(str(objlist[0]))
+						self.on_change("on_adapter_remove", [str(objlist[0])])
 
 					return DBUS.HANDLER_RESULT_HANDLED
 
@@ -64,12 +67,14 @@ class BlueZSignal:
 					objlist = [arg for arg in message.objects]
 
 					if "org.bluez.Device1" in objlist[1]:
-						self.objects.devices[str(objlist[0])] = BlueZDevice(objlist[1]["org.bluez.Device1"])
-						self.on_change()
+						self.objects.devices[str(objlist[0])] = \
+							BlueZDevice(objlist[1]["org.bluez.Device1"],str(objlist[0]))
+						self.on_change("on_device_new",[str(objlist[0])])
 
 					elif "org.bluez.Adapter1" in objlist[1]:
-						self.objects.adapters[str(objlist[0])] = BlueZAdapter(objlist[1]["org.bluez.Adapter1"])
-						self.on_change()
+						self.objects.adapters[str(objlist[0])] = \
+							BlueZAdapter(objlist[1]["org.bluez.Adapter1"],str(objlist[0]))
+						self.on_change("on_adapter_new",[str(objlist[0])])
 
 					return DBUS.HANDLER_RESULT_HANDLED
 			return DBUS.HANDLER_RESULT_HANDLED
@@ -104,7 +109,6 @@ class BlueZSignal:
 			handle(e)
 
 	def start(self):
-		self.task = None
 		self.th = Thread(target = self.run)
 		self.th.start()
 		time.sleep(0.1)
