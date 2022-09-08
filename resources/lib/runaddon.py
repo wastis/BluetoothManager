@@ -10,8 +10,11 @@
 #
 
 import sys
+import os
 
 import xbmcaddon
+import xbmcvfs
+import xbmc
 
 from log import log
 from handle import handle
@@ -20,19 +23,33 @@ from discovergui import DiscoverGui
 
 def run_addon():
 	log("start bluetooth manager")
+
 	try:
+		#avoid multiple starts of the addon to avoid conflict
+		lock = os.path.join(xbmcvfs.translatePath('special://temp'),'btlock')
+		if xbmcvfs.exists(lock):
+			log("addon is locked: " + lock)
+			return
+
+		open(lock,'w')
+
 		cwd = xbmcaddon.Addon().getAddonInfo('path')
 
 		try:
-			rem = False
-			cmd = sys.argv[1]
-			if cmd == "remove":
-				rem = True
-		except Exception:
+			rem = sys.argv[1] == "remove"
+		except IndexError:
 			rem = False
 
-		ui = DiscoverGui("discover.xml", cwd, "Default", "1080i" , remove = rem)
+		skin = xbmc.getSkinDir()
+		log("skin: " + skin)
+
+		if not os.path.exists(os.path.join(cwd,"resources","skins",skin)):
+			skin = "Default"
+
+		ui = DiscoverGui("discover.xml", cwd, skin, "1080i" , remove = rem)
 		ui.doModal()
 
 	except Exception as e:
 		handle(e)
+
+	xbmcvfs.delete(lock)

@@ -16,7 +16,7 @@ from xbmcgui import ListItem
 from log import log
 from handle import handle
 from handle import opthandle
-from threading import Thread, Lock
+from threading import Thread
 from time import sleep
 from dbussy import DBusError
 
@@ -32,8 +32,8 @@ class DiscoverGui(  xbmcgui.WindowXMLDialog  ):
 		self.remove = kwargs["remove"]
 
 		self.icon_path = self.cwd + "resources/skins/Default/media/"
-		self.lock = Lock()
 
+		self.action_in_progress = False
 		self.adapter = None
 
 		self.items = []
@@ -273,6 +273,10 @@ class DiscoverGui(  xbmcgui.WindowXMLDialog  ):
 	# dialog action handling
 	#
 
+	def setEnabled(self, enabled):
+		self.list.setEnabled(enabled)
+		self.radio.setEnabled(enabled)
+
 	def end_gui(self):
 		log("end_gui")
 		try:
@@ -285,9 +289,14 @@ class DiscoverGui(  xbmcgui.WindowXMLDialog  ):
 		self.close()
 
 	def on_list_click(self):
+		log("on_list_click")
 		if not self.running:
 			return
 
+		self.setEnabled(False)
+
+		self.action_in_progress = True
+		self.discover.setVisible(False)
 		self.blueset.setVisible(True)
 		try:
 			device = self.items[self.list.getSelectedPosition()][1]
@@ -309,7 +318,10 @@ class DiscoverGui(  xbmcgui.WindowXMLDialog  ):
 			opthandle(e)
 
 		self.blueset.setVisible(False)
+		self.discover.setVisible(True)
+		self.setEnabled(True)
 		self.setFocusId(2000);
+		log("on_list_click: done")
 
 	def on_radio_click(self):
 		log("on_radio_click")

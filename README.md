@@ -2,7 +2,7 @@
 
 This Kodi addon provides a manager that allows to pair, connect, disconnect and remove bluetooth devices from within a linux based Kodi. This is useful for headless systems.
 
-[Version 1.0.1](https://github.com/wastis/LinuxAddonRepo)
+[Version 1.0.2](https://github.com/wastis/LinuxAddonRepo)
 
 ## Installation
 
@@ -19,7 +19,7 @@ This addon is included into the [Linux Addon Repository](https://github.com/wast
 
 An example on how to set up a headless kodi on a raspberry-pi with Bluetooth Manager and Equalizer can be found [here](https://github.com/wastis/PulseEqualizerGui/wiki/Example-setup-on-Raspberry-Pi).
 
-![Cinnamon Sound Tray Icon](resources/media/bt-manager.jpg)
+![Bluetooth Manager](resources/media/bt-manager.jpg)
 
 
 *2022 wastis*

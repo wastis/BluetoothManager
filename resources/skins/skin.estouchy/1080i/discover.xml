@@ -1,0 +1,245 @@
+<?xml version="1.0" ?>
+<window>
+	<defaultcontrol always="true">2010</defaultcontrol>
+	<animation effect="fade" time="200">WindowOpen</animation>
+	<animation effect="fade" time="200">WindowClose</animation>
+	<coordinates>
+		<left>310</left>
+		<top>140</top>
+		<origin x="310" y="140">Window.IsActive(Home)</origin>
+	</coordinates>
+	<controls>
+		<control type="image">
+			<left>-1920</left>
+			<top>-1080</top>
+			<width>5760</width>
+			<height>3240</height>
+			<animation effect="fade" start="0" end="100" time="300">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+			<texture colordiffuse="88888888">colimg/black.png</texture>
+		</control>
+		<control type="button" id="2999">
+			<left>-1920</left>
+			<top>-1080</top>
+			<width>5760</width>
+			<height>3240</height>
+			<texturefocus/>
+			<texturenofocus/>
+			<onclick>Action(back)</onclick>
+			<onup>2010</onup>
+			<ondown>2010</ondown>
+			<onleft>2010</onleft>
+			<onright>2010</onright>
+		</control>
+		<control type="image">
+			<visible>true</visible>
+			<left>0</left>
+			<top>0</top>
+			<width>1200</width>
+			<height>800</height>
+			<texture colordiffuse="FF1A2123">colimg/white.png</texture>
+		</control>
+		<control type="image">
+			<left>35</left>
+			<top>105</top>
+			<width>1130</width>
+			<height>660</height>
+			<visible>true</visible>
+			<texture colordiffuse="00000000">colimg/black.png</texture>
+		</control>
+		<control type="image">
+			<left>625</left>
+			<top>10</top>
+			<width>540</width>
+			<height>80</height>
+			<visible>true</visible>
+			<texture colordiffuse="00000000">colimg/black.png</texture>
+		</control>
+		<control type="image">
+			<left>35</left>
+			<top>10</top>
+			<width>400</width>
+			<height>80</height>
+			<visible>true</visible>
+			<texture colordiffuse="00000000">colimg/black.png</texture>
+		</control>
+		<control type="radiobutton" id="2010">
+			<left>35</left>
+			<top>10</top>
+			<width>400</width>
+			<height>80</height>
+			<textcolor>white</textcolor>
+			<font>font24_title</font>
+			<textoffsetx>30</textoffsetx>
+			<textwidth>300</textwidth>
+			<align>left</align>
+			<aligny>center</aligny>
+			<pulseonselect>false</pulseonselect>
+			<onfocus/>
+			<onunfocus/>
+			<onup/>
+			<ondown>2000</ondown>
+			<onleft/>
+			<onright/>
+			<label>None</label>
+		</control>
+		<control type="label" id="2021">
+			<left>640</left>
+			<top>20</top>
+			<width>430</width>
+			<height>60</height>
+			<aligny>center</aligny>
+			<align>right</align>
+			<label>Discovering</label>
+			<textcolor>white</textcolor>
+			<font>font24_title</font>
+		</control>
+		<control type="image" id="1000">
+			<left>1090</left>
+			<top>20</top>
+			<width>60</width>
+			<height>60</height>
+			<texture colordiffuse="white">rotation/rot0.png</texture>
+			<aspectratio>keep</aspectratio>
+		</control>
+		<!-- item list -->
+		<control type="list" id="2000">
+			<description>My first list container</description>
+			<left>50</left>
+			<top>120</top>
+			<width>1100</width>
+			<height>630</height>
+			<onleft/>
+			<onright/>
+			<onup>2010</onup>
+			<visible>true</visible>
+			<viewtype>biglist</viewtype>
+			<orientation>vertical</orientation>
+			<autoscroll>false</autoscroll>
+			<scrolltime tween="sine" easing="out">200</scrolltime>
+			<!-- not focused -->
+			<itemlayout width="1100" height="80">
+				<control type="image">
+					<width>1000</width>
+					<height>80</height>
+					<left>80</left>
+					<top>0</top>
+					<visible>false</visible>
+				</control>
+				<control type="image">
+					<left>3</left>
+					<top>3</top>
+					<width>64</width>
+					<height>64</height>
+					<texture colordiffuse="white">$INFO[ListItem.Icon]</texture>
+				</control>
+				<control type="label">
+					<left>100</left>
+					<top>3</top>
+					<width>950</width>
+					<height>64</height>
+					<font>font24_title</font>
+					<aligny>center</aligny>
+					<align>left</align>
+					<label>$INFO[ListItem.Label]</label>
+					<textcolor>white</textcolor>
+				</control>
+				<control type="label">
+					<left>100</left>
+					<top>3</top>
+					<width>950</width>
+					<height>64</height>
+					<font>font24_title</font>
+					<aligny>center</aligny>
+					<align>right</align>
+					<label>$INFO[ListItem.Label2]</label>
+					<textcolor>white</textcolor>
+				</control>
+				<!-- focused -->
+			</itemlayout>
+			<focusedlayout width="1100" height="80">
+				<control type="image">
+					<width>1000</width>
+					<height>80</height>
+					<left>80</left>
+					<top>0</top>
+					<visible>false</visible>
+				</control>
+				<control type="image">
+					<width>1000</width>
+					<height>80</height>
+					<left>80</left>
+					<top>0</top>
+					<visible>Control.HasFocus(2000)</visible>
+					<texture>list_focus.png</texture>
+				</control>
+				<control type="image">
+					<left>3</left>
+					<top>3</top>
+					<width>64</width>
+					<height>64</height>
+					<texture colordiffuse="white">$INFO[ListItem.Icon]</texture>
+				</control>
+				<!-- selected-->
+				<control type="label">
+					<left>100</left>
+					<top>3</top>
+					<width>950</width>
+					<height>64</height>
+					<font>font24_title</font>
+					<aligny>center</aligny>
+					<align>left</align>
+					<visible>Control.HasFocus(2000)</visible>
+					<label>$INFO[ListItem.Label]</label>
+					<textcolor>white</textcolor>
+				</control>
+				<control type="label">
+					<left>100</left>
+					<top>3</top>
+					<width>950</width>
+					<height>64</height>
+					<font>font24_title</font>
+					<aligny>center</aligny>
+					<align>right</align>
+					<visible>Control.HasFocus(2000)</visible>
+					<label>$INFO[ListItem.Label2]</label>
+					<textcolor>white</textcolor>
+				</control>
+				<!-- no selected-->
+				<control type="label">
+					<left>100</left>
+					<top>3</top>
+					<width>950</width>
+					<height>64</height>
+					<font>font24_title</font>
+					<aligny>center</aligny>
+					<align>left</align>
+					<visible>!Control.HasFocus(2000)</visible>
+					<label>$INFO[ListItem.Label]</label>
+					<textcolor>white</textcolor>
+				</control>
+				<control type="label">
+					<left>100</left>
+					<top>3</top>
+					<width>950</width>
+					<height>64</height>
+					<font>font24_title</font>
+					<aligny>center</aligny>
+					<align>right</align>
+					<visible>!Control.HasFocus(2000)</visible>
+					<label>$INFO[ListItem.Label2]</label>
+					<textcolor>white</textcolor>
+				</control>
+			</focusedlayout>
+		</control>
+		<!-- rotation image -->
+		<control type="image" id="1001">
+			<left>560</left>
+			<top>395</top>
+			<width>80</width>
+			<height>80</height>
+			<texture colordiffuse="white">rotation/rot0.png</texture>
+			<aspectratio>keep</aspectratio>
+		</control>
+	</controls>
+</window>
