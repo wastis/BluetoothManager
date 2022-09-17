@@ -25,20 +25,23 @@ def run_addon():
 	log("start bluetooth manager")
 
 	try:
-		#avoid multiple starts of the addon to avoid conflict
-		lock = os.path.join(xbmcvfs.translatePath('special://temp'),'btlock')
-		if xbmcvfs.exists(lock):
-			log("addon is locked: " + lock)
-			return
-
-		open(lock,'w')
-
-		cwd = xbmcaddon.Addon().getAddonInfo('path')
-
 		try:
 			rem = sys.argv[1] == "remove"
 		except IndexError:
 			rem = False
+
+		#avoid multiple starts of the addon to avoid conflict
+		lock = os.path.join(xbmcvfs.translatePath('special://temp'),'btlock')
+		if xbmcvfs.exists(lock):
+			if rem:
+				xbmcvfs.delete(lock)
+			else:
+				log("addon is locked: " + lock)
+				return
+
+		open(lock,'w')
+
+		cwd = xbmcaddon.Addon().getAddonInfo('path')
 
 		skin = xbmc.getSkinDir()
 		log("skin: " + skin)
