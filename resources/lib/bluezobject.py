@@ -57,6 +57,6 @@ class BlueZAdapter(BlueZObject):
 class BlueZDevice(BlueZObject):
 	attributes = ["Address","AddressType","Name","Alias","Class",
 				"Icon","Paired","Trusted","Blocked","LegacyPairing",
-				"Connected","Adapter","ServicesResolved", "id"]
+				"Connected","Adapter","ServicesResolved", "id", "UUIDs"]
 
 	change_signal = ["Paired","Trusted","Connected"]

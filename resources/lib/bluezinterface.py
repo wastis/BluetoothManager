@@ -137,3 +137,9 @@ class BlueZInterface:
 
 	def disconnect(self,device):
 		self.blueZ.call_func("org.bluez.Device1", device,'Disconnect')
+
+	def connect_profile(self,device,profile):
+		self.blueZ.call_func("org.bluez.Device1", device,'ConnectProfile',"s",profile)
+
+	def disconnect_profile(self,device,profile):
+		self.blueZ.call_func("org.bluez.Device1", device,'DisconnectProfile',"s",profile)

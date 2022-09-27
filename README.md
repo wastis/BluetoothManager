@@ -2,7 +2,7 @@
 
 This Kodi addon provides a manager that allows to pair, connect, disconnect and remove bluetooth devices from within a linux based Kodi. This is useful for headless systems.
 
-[Version 1.0.3](https://github.com/wastis/LinuxAddonRepo)
+[Version 1.0.4](https://github.com/wastis/LinuxAddonRepo)
 
 ## Installation
 

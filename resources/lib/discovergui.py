@@ -288,6 +288,26 @@ class DiscoverGui(  xbmcgui.WindowXMLDialog  ):
 		self.bluez.stop()
 		self.close()
 
+	def connect_profile(self,device):
+		uid = ""
+		for uuid in device.UUIDs:
+			log("profile: " + uuid)
+			#a2db
+			if uuid.startswith("0000110b"):
+				uid = uuid
+
+		success = False
+		if uid:
+			try:
+				self.bluez.connect_profile(device.id, uid)
+				success = True
+				log("connected wiht A2DB")
+			except Exception as e:
+				opthandle(e)
+
+		if not success:
+			self.bluez.connect(device.id)
+
 	def on_list_click(self):
 		log("on_list_click")
 		if not self.running:
@@ -308,10 +328,10 @@ class DiscoverGui(  xbmcgui.WindowXMLDialog  ):
 					if device.Connected:
 						self.bluez.disconnect(device.id)
 					else:
-						self.bluez.connect(device.id)
+						self.connect_profile(device)
 			else:
 				self.bluez.pair(device.id)
-				self.bluez.connect(device.id)
+				self.connect_profile(device)
 		except DBusError as e:
 			log(e.args[0])
 		except Exception as e:
