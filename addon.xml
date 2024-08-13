@@ -19,7 +19,7 @@
 		<disclaimer lang="de_DE">https://github.com/wastis/BluetoothManager</disclaimer>
 		<news>
 v1.0.4
-- try to connect with a2db profile first
+- try to connect with a2dp profile first
 v1.0.3
 - remove addon lock when kodi starts and remove device is selected
 v1.0.2
