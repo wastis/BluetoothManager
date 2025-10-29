@@ -5,7 +5,7 @@
         <setting label="32009" type="action" action="RunScript(script.bluetooth.man, remove)"/>
     </category>
     <category label="32011">
-        <setting label="32012" type="text" id="pairingpin" default="9876" />
+        <setting label="32012" type="text" id="pairingpin" default="0000" />
         <setting label="32013" type="bool" id="autotrust" default="true" />
     </category>
 </settings>

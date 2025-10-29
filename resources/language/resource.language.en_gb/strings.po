@@ -1,7 +1,7 @@
 # XBMC Media Center language file
 # Addon Name: Bluetooth Manager
 # Addon id: script.bluetooth.man
-# Addon version: 1.0.4
+# Addon version: 1.0.5
 # Addon Provider: wastis
 msgid ""
 msgstr ""
