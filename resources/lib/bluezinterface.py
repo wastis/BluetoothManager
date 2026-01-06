@@ -136,7 +136,7 @@ class BlueZInterface:
 			self.trust(device.id)
 
 	def pair(self,device):
-		self.trust(device)
+		# Removed pre-trust to avoid bluez rejection, trust will be set after pairing via autotrust
 		self.blueZ.call_func("org.bluez.Device1", device,'Pair')
 
 	def remove(self,device):
@@ -169,6 +169,26 @@ class BlueZInterface:
 	def RequestPinCode(self, message, device):
 		log("Pairing request from %s" % device)
 		self.AgentHandler.RequestPinCode(message, device)
+
+	def RequestPasskey(self, message, device):
+		log("Passkey request from %s" % device)
+		self.AgentHandler.RequestPasskey(message, device)
+
+	def DisplayPasskey(self, message, device, passkey, entered):
+		log("Display passkey for %s" % device)
+		self.AgentHandler.DisplayPasskey(message, device, passkey, entered)
+
+	def DisplayPinCode(self, message, device, pincode):
+		log("Display PIN for %s" % device)
+		self.AgentHandler.DisplayPinCode(message, device, pincode)
+
+	def RequestConfirmation(self, message, device, passkey):
+		log("Confirmation request from %s" % device)
+		self.AgentHandler.RequestConfirmation(message, device, passkey)
+
+	def RequestAuthorization(self, message, device):
+		log("Authorization request from %s" % device)
+		self.AgentHandler.RequestAuthorization(message, device)
 
 	def Release(self, message):
 		self.AgentHandler.Release(message)

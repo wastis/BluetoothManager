@@ -89,6 +89,44 @@ class BlueZSignal:
 
 					return DBUS.HANDLER_RESULT_HANDLED
 
+				if message.member == "RequestPasskey":
+					objlist = [arg for arg in message.objects]
+					device = objlist[0]
+					arg = [message, str(device)]
+					log(f"RequestPasskey {device}")
+					self.on_change("on_agent_passkey_request", arg)
+
+					return DBUS.HANDLER_RESULT_HANDLED
+
+				if message.member == "DisplayPasskey":
+					device, passkey, entered = message.objects
+					log(f"DisplayPasskey {device} {passkey} {entered}")
+					self.on_change("on_agent_display_passkey", [message, str(device), passkey, entered])
+
+					return DBUS.HANDLER_RESULT_HANDLED
+
+				if message.member == "DisplayPinCode":
+					device, pincode = message.objects
+					log(f"DisplayPinCode {device} {pincode}")
+					self.on_change("on_agent_display_pincode", [message, str(device), str(pincode)])
+
+					return DBUS.HANDLER_RESULT_HANDLED
+
+				if message.member == "RequestConfirmation":
+					device, passkey = message.objects
+					log(f"RequestConfirmation {device} {passkey}")
+					self.on_change("on_agent_request_confirmation", [message, str(device), passkey])
+
+					return DBUS.HANDLER_RESULT_HANDLED
+
+				if message.member == "RequestAuthorization":
+					objlist = [arg for arg in message.objects]
+					device = objlist[0]
+					log(f"RequestAuthorization {device}")
+					self.on_change("on_agent_request_authorization", [message, str(device)])
+
+					return DBUS.HANDLER_RESULT_HANDLED
+
 				if message.member == "Release":
 					log("Release message")
 					self.on_change("on_agent_release", [message])

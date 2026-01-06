@@ -284,6 +284,26 @@ class DiscoverGui(  xbmcgui.WindowXMLDialog  ):
 		log("on_agent_pincode_request")
 		self.bluez.RequestPinCode(message, device)
 
+	def on_agent_passkey_request(self, message, device):
+		log("on_agent_passkey_request")
+		self.bluez.RequestPasskey(message, device)
+
+	def on_agent_display_passkey(self, message, device, passkey, entered):
+		log("on_agent_display_passkey")
+		self.bluez.DisplayPasskey(message, device, passkey, entered)
+
+	def on_agent_display_pincode(self, message, device, pincode):
+		log("on_agent_display_pincode")
+		self.bluez.DisplayPinCode(message, device, pincode)
+
+	def on_agent_request_confirmation(self, message, device, passkey):
+		log("on_agent_request_confirmation")
+		self.bluez.RequestConfirmation(message, device, passkey)
+
+	def on_agent_request_authorization(self, message, device):
+		log("on_agent_request_authorization")
+		self.bluez.RequestAuthorization(message, device)
+
 	def on_agent_release(self, message):
 		log("on_agent_release")
 		self.bluez.Release(message)
