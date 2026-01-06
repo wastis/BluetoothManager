@@ -19,9 +19,12 @@
         <disclaimer lang="de_DE">https://github.com/wastis/BluetoothManager</disclaimer>
         <news>
 v1.0.6
-            - Expanded Pairing Support
-            - Headless Improvements
-            - Pairing Fix
+- Add support for SSP (Secure Simple Pairing) authentication methods
+- Implement RequestPasskey, DisplayPasskey, DisplayPinCode handlers
+- Implement RequestConfirmation and RequestAuthorization handlers
+- Remove pre-trust call that caused pairing rejection by bluez
+- Auto-confirm and auto-authorize for headless operation
+- Fixes 'pairing rejected by bluez' error with modern smartphones
 v1.0.5
 - allows a peer BT device can trigger pairing via a PIN. Add switch to enable autotrust. 
 v1.0.4
